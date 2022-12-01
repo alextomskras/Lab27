@@ -81,11 +81,11 @@ public String howCheckedChip;
 //        if(howChecked){
 //            howCheckedCheckBox = "true";
 //        }else
-            howCheckedCheckBox = "false";
+            howCheckedAppButton = "false";
 
 
 
-        mainTexts.setText(mytextChip+":"+howCheckedChip+"\n"+mytextCheckbox+":"+howCheckedChip+"\n"+mytextSwitch+":"+howCheckedChip+"\n"+mytextApcbutton+":"+howCheckedChip+"\n");
+        mainTexts.setText(mytextChip+":"+howCheckedChip+"\n"+mytextCheckbox+":"+howCheckedCheckBox+"\n"+mytextSwitch+":"+howCheckedSwitch+"\n"+mytextApcbutton+":"+howCheckedAppButton+"\n");
 //        mainTexts.setText(getResources().getString(R.string.chip));
 //        Toast.makeText(this,mytext, Toast.LENGTH_LONG).show();
 //        mainTexts.setText(setText);
