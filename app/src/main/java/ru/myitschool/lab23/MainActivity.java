@@ -1,11 +1,17 @@
 package ru.myitschool.lab23;
 
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.ColorRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -14,29 +20,38 @@ import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
+import java.util.Objects;
+
 import ru.myitschool.lab23.databinding.ActivityMainBinding;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 private ActivityMainBinding binding;
     public boolean howChecked;
 public String howCheckedChip;
     public String howCheckedCheckBox;
     public String howCheckedSwitch;
     public String howCheckedAppButton;
+    public TextView mainTexts;
+    public Chip mainChip;
+    public MaterialCheckBox mainCheckBox;
+    public SwitchMaterial mainSwitch;
+    public AppCompatButton mainButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-
+        setContentView(binding.getRoot());
         setContentView(R.layout.activity_main);
-        TextView mainTexts = findViewById(R.id.summary_text);
+//        TextView mainTexts = findViewById(R.id.summary_text);
         Button showButton = findViewById(R.id.show_action);
-
-        Chip mainChip = findViewById(R.id.chip_material);
-        MaterialCheckBox mainCheckBox = findViewById(R.id.check_box_material);
-        SwitchMaterial mainSwitch = findViewById(R.id.switch_material);
+//
+//        Chip mainChip = findViewById(R.id.chip_material);
+//        MaterialCheckBox mainCheckBox = findViewById(R.id.check_box_material);
+//        SwitchMaterial mainSwitch = findViewById(R.id.switch_material);
         AppCompatButton mainButton = findViewById(R.id.toggle_button);
+        mainButton.setOnClickListener(this);
+        showButton.setOnClickListener(this);
 //        String mytextChip = getResources().getString(R.string.chip);
 //        String mytextCheckbox = getResources().getString(R.string.checkbox);
 //        String mytextSwitch = getResources().getString(R.string.switche);
@@ -49,7 +64,7 @@ public String howCheckedChip;
 //        }
 
 
-        showSummaryText(mainTexts,mainChip,mainCheckBox,mainSwitch,mainButton);
+//        showSummaryText(mainTexts,mainChip,mainCheckBox,mainSwitch,mainButton);
 
 
     }
@@ -58,9 +73,36 @@ public String howCheckedChip;
 //        howChecked =  checkers.isChecked();
 //    }
 
-    private void showSummaryText(TextView mainTexts,Chip mainChip,MaterialCheckBox mainCheckBox,SwitchMaterial mainSwitch,AppCompatButton mainButton) {
-        mainTexts.getText();
+//    private void clickListenerFP() {
+//        binding.content.showAction.setOnClickListener(new View.OnClickListener() {
+//            /**
+//             * Called when a view has been clicked.
+//             *
+//             * @param v The view that was clicked.
+//             */
+//            @Override
+//            public void onClick(View v) {
+////                tv.setText(months[rand.nextInt(12)]);
+////                tv.setTextColor(Color.rgb(rand.nextInt(255)+1, rand.nextInt(255)+1, rand.nextInt(255)+1));
+//            }
+//        });
+//        {
+//            String mytextChip = getResources().getString(R.string.chip);
+//            finish();
+//        }
+//    }
+
+    private void showSummaryText() {
+//    private void showSummaryText(TextView mainTexts,Chip mainChip,MaterialCheckBox mainCheckBox,SwitchMaterial mainSwitch,AppCompatButton mainButton) {
+//        mainTexts.getText();
 //        getApplicationContext().getResources();
+        TextView mainTexts = findViewById(R.id.summary_text);
+//        Button showButton = findViewById(R.id.show_action);
+
+        Chip mainChip = findViewById(R.id.chip_material);
+        MaterialCheckBox mainCheckBox = findViewById(R.id.check_box_material);
+        SwitchMaterial mainSwitch = findViewById(R.id.switch_material);
+
         String mytextChip = getResources().getString(R.string.chip);
         String mytextCheckbox = getResources().getString(R.string.checkbox);
         String mytextSwitch = getResources().getString(R.string.switche);
@@ -94,5 +136,34 @@ public String howCheckedChip;
 //                                mainTexts.setText(getResources().getString(R.string.apcbutton));
 //        mainTexts.setText("R.string.chip+R.string.checkbox+R.string.switche+R.string.apcbutton");
 
+    }
+
+    /**
+     * Called when a view has been clicked.
+     *
+     * @param view The view that was clicked.
+     */
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.show_action:
+                //action
+//                Chip mainChip = binding.content.chipMaterial;
+                showSummaryText();
+//                showSummaryText(mainTexts,mainChip,mainCheckBox,mainSwitch,mainButton);
+                break;
+
+            case R.id.toggle_button:
+                //action
+                AppCompatButton mainButton = findViewById(R.id.toggle_button);
+                String mainButtonText = (String) mainButton.getText();
+                Log.d("TAG","___________!!!"+mainButtonText);
+                if(Objects.equals(mainButtonText, "isChecked")) {
+                    mainButton.setText(getResources().getString(R.string.toggle_button));
+                }else {mainButton.setText(getResources().getString(R.string._isChecked));
+                    Log.d("TAG","___________isChecked");
+                }
+                break;
+        }
     }
 }
