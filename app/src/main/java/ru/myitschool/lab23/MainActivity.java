@@ -123,7 +123,7 @@ public String howCheckedChip;
 //        if(howChecked){
 //            howCheckedCheckBox = "true";
 //        }else
-            howCheckedAppButton = "false";
+//            howCheckedAppButton = "false";
 
 
 
@@ -160,9 +160,13 @@ public String howCheckedChip;
                 Log.d("TAG","___________!!!"+mainButtonText);
                 if(Objects.equals(mainButtonText, "isChecked")) {
                     mainButton.setText(getResources().getString(R.string.toggle_button));
-                }else {mainButton.setText(getResources().getString(R.string._isChecked));
-                    Log.d("TAG","___________isChecked");
+                    howCheckedAppButton= String.valueOf(false);
+                }else {
+                    mainButton.setText(getResources().getString(R.string._isChecked));
+                    howCheckedAppButton= String.valueOf(true);
+                    Log.d("TAG","___________isChecked"+howCheckedAppButton);
                 }
+
                 break;
         }
     }
